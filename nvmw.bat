@@ -105,7 +105,9 @@ if not exist "%NODE_EXE_FILE%" (
   set "CD_ORG=%CD%"
   cd "%NODE_HOME%"
   cscript "%NVMW_HOME%\unzip.js" "%NPM_ZIP_FILE%" "%NODE_HOME%"
-  cd "%CD_ORG%"
+  mkdir %NODE_HOME%\node_modules
+  move npm-* %NODE_HOME%\node_modules\npm
+  copy %NODE_HOME%\node_modules\npm\bin\npm.cmd %NODE_HOME%\npm.cmd
   if not exist "%NODE_HOME%\npm.cmd" goto install_error
   echo npm %NPM_VERSION% install ok
 
